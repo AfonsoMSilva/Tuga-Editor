@@ -15,18 +15,38 @@
 #define RIGHT_ARROW 261 
 
 typedef struct {
-    size_t index;
-    size_t size;
-    char *contents;
-} Row;
+    size_t begin;
+    size_t end;
+} Line;
 
 typedef struct {
-    char *buf;
-    Row rows;
-    size_t row_index;
-    size_t row_s;
-    size_t cur_pos;
-} Buffer;
+    Line *items;
+    size_t count;
+    size_t capacity;
+} Lines;
+
+typedef struct {
+    char *items;
+    size_t count;
+    size_t capacity;
+} Data;
+
+typedef struct {
+    Data data;
+    Lines lines;
+    size_t cursor;
+    size_t view_row;
+    size_t view_col;
+} Editor;
+
+void recompute_lines(Editor *e) {
+    e->lines.count = 0;
+    for(size_t i = 0; i < e->data.count; i++) { 
+
+    }
+}
+
+
 
 void backspace(){
     int y, x;
